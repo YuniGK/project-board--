@@ -2,11 +2,10 @@ package com.example.projectboard.domain;
 
 import java.time.LocalDateTime;
 
-public class Article {
+public class ArticleComment {
     private Long id;
-    private String title;
+    private Article article;//게시글
     private String content;
-    private String hashtag;
 
     private LocalDateTime createdAt;
     private String createdBy;
