@@ -40,8 +40,16 @@ public class Article {
     private Long id;
 
     @Setter//수정이 필요한 부분만 setter 어너테이션을 붙인다. / id 등에 사용자나 개발자가 수정할 수 있는 것을 막기 위해 각각 설정했다.
+    @Column(nullable = false)
+    /* nullable은 @Column의 속성 중 하나이며, 기본값은 true이다.
+
+    * DDL 생성 시 not null로 생성된다.
+    * @NotNull : null이 들어갈 경우 예외를 발생시킨다.
+    * nullable의 경우 NotNull과 다르게 null을 넣은 엔티티를 생성해도 개발에서는 오류를 발생하지 않으나,
+    * db에서 예외를 발생시킨다. */
     private String title;
     @Setter
+    @Column(nullable = false, length = 10000)//length를 통해 데이터 크기를 지정한다.
     private String content;
 
     @Setter
@@ -49,11 +57,16 @@ public class Article {
 
     //자동으로 생성되게 설정한다. JPA Auditing
     @CreatedDate//엔티티가 생성되어 저장될 때, 시간이 자동으로 저장된다.
-    private LocalDateTime createdAt;
-    @CreatedBy//엔티티가 생성되어 저장될 때, 유저의 id를 자동으로 저장된다.
-    private String createdBy;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;//생성일시
+    @CreatedBy//엔티티가 생성되어 저장될 때, 유저의 id를 자동으로 저장된
+    @Column(nullable = false, length = 100)
+    private String createdBy;//생성자
+
     @LastModifiedDate
-    private LocalDateTime modifiedAt;
+    @Column(nullable = false)
+    private LocalDateTime modifiedAt;//수정일시
     @LastModifiedBy
-    private String modifiedBy;
+    @Column(nullable = false, length = 100)
+    private String modifiedBy;//수정자
 }
