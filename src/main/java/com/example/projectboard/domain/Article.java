@@ -1,6 +1,7 @@
 package com.example.projectboard.domain;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @ToString
@@ -69,4 +71,39 @@ public class Article {
     @LastModifiedBy
     @Column(nullable = false, length = 100)
     private String modifiedBy;//수정자
+
+    //기본 생성자
+    protected Article(){}
+
+    //자동으로 생성되는 컬럼은 제외
+    private Article(String title, String content, String hashtag) {
+        this.title = title;
+        this.content = content;
+        this.hashtag = hashtag;
+    }
+
+    public static Article of(String title, String content, String hashtag) {
+        return new Article(title, content, hashtag);
+    }
+
+    /* 동일한 게시글인지 확인하기 위한 설정 ctrl+n -> equals() and hashcode() 를 통해서 생성한다.
+    * 보통은 룸복을 이용해 비교하나, id가 동일 여부를 통해 동일한 게시글인지 확인이 가능하여
+    * 개별적으로 작성한다.
+
+    * 아직 영속성이 등록되지 않은 id값은 null 이므로, null인지 확인한다.
+    * (제목, 내용, 해시태그 내용이 같아도 id가 다를 경우 다른 글로 본다.)
+    
+    * 영속성 - 데이터를 생성한 프로그램의 실행이 종료되더라도 사라지지 않는 데이터의 특성
+    * */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Article article)) return false;
+        return id != null && Objects.equals(id, article.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
