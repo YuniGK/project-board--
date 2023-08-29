@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
@@ -44,8 +48,12 @@ public class Article {
     private String hashtag;
 
     //자동으로 생성되게 설정한다. JPA Auditing
+    @CreatedDate//엔티티가 생성되어 저장될 때, 시간이 자동으로 저장된다.
     private LocalDateTime createdAt;
+    @CreatedBy//엔티티가 생성되어 저장될 때, 유저의 id를 자동으로 저장된다.
     private String createdBy;
+    @LastModifiedDate
     private LocalDateTime modifiedAt;
+    @LastModifiedBy
     private String modifiedBy;
 }
