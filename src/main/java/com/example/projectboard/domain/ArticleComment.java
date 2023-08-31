@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -17,6 +18,7 @@ import java.util.Objects;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)//기본 생성자 생성 //생성자 권한은 protected 이다.
 public class ArticleComment {
@@ -39,7 +41,6 @@ public class ArticleComment {
     연관관계를 갖는 두 테이블에서 외래키를 갖게되는 테이블이 연관관계의 주인이 됩니다.
     연관관계의 주인만이 외래 키를 관리(등록, 수정, 삭제) 할 수 있고, 주인이 아닌 엔티티는 읽기만 할 수 있습니다.
     */
-
     //optional = false - null이 아니다.
     private Article article;//게시글
 

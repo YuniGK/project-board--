@@ -10,9 +10,12 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString
@@ -23,6 +26,7 @@ import java.util.Objects;
         @Index(columnList = "createdBy")
 })/* 테이블 지정 - index를 여러개 추가하는 방법
     / 테이블에 대한 데이터 검색 작업의 속도를 향상 시키는 데이터 구조 */
+@EntityListeners(AuditingEntityListener.class)//JPA Auditing라는 것을 알려준다.
 @Entity
 public class Article {
     @Id//primary key
@@ -56,6 +60,27 @@ public class Article {
 
     @Setter
     private String hashtag;
+
+    /*
+    * - OrderBy("id") - 정렬을 하고 정렬 기준은 id이다.
+    * - SET을 사용하는 것은 게시글에 영동된 댓글은 중복을 허용하지 않고 모아서 리스트로 보겠다는 의미
+    * - OneToMany 연관관계를 매핑해 준다.
+    * - mappedBy : 자신이 이 연관관계의 주인이 아님을 설정한다.
+    * (일반적으로 외래키를 가진 객체를 주인으로 정의하는 것이 좋다.
+    * 보통 N:1 에서 N이 외래키를 가진다.)
+    * 작성하지 않을 경우 임의로 두테이블을 합친 한 테이블을 생성한다.
+    * - cascade : 부모 엔티티가 삭제될 때 자식 엔티티도 삭제
+    * CascadeType.ALL: 모든 Cascade를 적용
+    * CascadeType.PERSIST: 엔티티를 영속화할 때, 연관된 엔티티도 함께 유지
+    * CascadeType.MERGE: 엔티티 상태를 병합(Merge)할 때, 연관된 엔티티도 모두 병합
+    * CascadeType.REMOVE: 엔티티를 제거할 때, 연관된 엔티티도 모두 제거
+    * CascadeType.DETACH: 부모 엔티티를 detach() 수행하면, 연관 엔티티도 detach()상태가 되어 변경 사항 반영 X
+    * CascadeType.REFRESH: 상위 엔티티를 새로고침(Refresh)할 때, 연관된 엔티티도 모두 새로고침
+    */
+    @ToString.Exclude//룸복에서 ToString할때 해당 필드를 제외한다.
+    @OrderBy("id")
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
     //자동으로 생성되게 설정한다. JPA Auditing
     @CreatedDate//엔티티가 생성되어 저장될 때, 시간이 자동으로 저장된다.
