@@ -26,9 +26,9 @@ import java.util.Set;
         @Index(columnList = "createdBy")
 })/* 테이블 지정 - index를 여러개 추가하는 방법
     / 테이블에 대한 데이터 검색 작업의 속도를 향상 시키는 데이터 구조 */
-@EntityListeners(AuditingEntityListener.class)//JPA Auditing라는 것을 알려준다.
+//@EntityListeners(AuditingEntityListener.class)//JPA Auditing라는 것을 알려준다.
 @Entity
-public class Article {
+public class Article extends AuditingFields{
     @Id//primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)//자동으로 AUTO_INCREMENT를 하여 기본키를 생성
     /* 엔티티 기본 생성 전략을 정의(기본키 생성을 데이터베이스에게 위임하는 방식)
@@ -82,6 +82,7 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
+    /*
     //자동으로 생성되게 설정한다. JPA Auditing
     @CreatedDate//엔티티가 생성되어 저장될 때, 시간이 자동으로 저장된다.
     @Column(nullable = false)
@@ -96,6 +97,7 @@ public class Article {
     @LastModifiedBy
     @Column(nullable = false, length = 100)
     private String modifiedBy;//수정자
+    */
 
     //기본 생성자
     protected Article(){}
