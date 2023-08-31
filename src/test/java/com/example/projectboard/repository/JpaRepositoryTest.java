@@ -5,6 +5,7 @@ import com.example.projectboard.domain.Article;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 
@@ -13,6 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayName("JPA 연결 테스트")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)//테스트 db가 아닌 설정한 db를 불러와서 테스트한다.
 @Import(JpaConfig.class)
 @DataJpaTest
 class JpaRepositoryTest {

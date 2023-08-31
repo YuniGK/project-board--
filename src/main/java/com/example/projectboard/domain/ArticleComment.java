@@ -20,7 +20,9 @@ import java.util.Objects;
 })
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)//기본 생성자 생성 //생성자 권한은 protected 이다.
+/* @NoArgsConstructor(access = AccessLevel.PROTECTED)//기본 생성자 생성 //생성자 권한은 protected 이다.
+application.yaml에서 test.database.replace: none 추가한 내용과 위 내용이 동일하다.
+*/
 public class ArticleComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
