@@ -18,12 +18,11 @@ import java.util.Objects;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
 /* @NoArgsConstructor(access = AccessLevel.PROTECTED)//기본 생성자 생성 //생성자 권한은 protected 이다.
 application.yaml에서 test.database.replace: none 추가한 내용과 위 내용이 동일하다.
 */
-public class ArticleComment {
+public class ArticleComment extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,15 +47,6 @@ public class ArticleComment {
 
     @Setter @Column(nullable = false, length = 500)
     private String content;
-
-    @CreatedDate @Column(nullable = false)
-    private LocalDateTime createdAt;
-    @CreatedBy @Column(nullable = false)
-    private String createdBy;
-    @LastModifiedDate @Column(nullable = false)
-    private LocalDateTime modifiedAt;
-    @LastModifiedBy @Column(nullable = false)
-    private String modifiedBy;
 
     private ArticleComment(Article article, String content) {
         this.article = article;
