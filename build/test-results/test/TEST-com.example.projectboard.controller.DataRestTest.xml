@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Data REST 테스트" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-09-01T05:53:42" hostname="Yunui-MacBookAir.local" time="0.548">
+  <properties/>
+  <testcase name="[api] 댓글 단건 조회" classname="com.example.projectboard.controller.DataRestTest" time="0.548"/>
+  <system-out><![CDATA[14:53:39.470 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.projectboard.controller.DataRestTest]: DataRestTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:53:39.515 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.projectboard.ProjectBoardApplication for test class com.example.projectboard.controller.DataRestTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.3)
+
+2023-09-01T14:53:39.702+09:00  INFO 7913 --- [    Test worker] c.e.p.controller.DataRestTest            : Starting DataRestTest using Java 20.0.2 with PID 7913 (started by yunkim in /Users/yunkim/Downloads/study/project-board--/project-board--)
+2023-09-01T14:53:39.703+09:00  INFO 7913 --- [    Test worker] c.e.p.controller.DataRestTest            : No active profile set, falling back to 1 default profile: "default"
+2023-09-01T14:53:40.109+09:00  INFO 7913 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-01T14:53:40.129+09:00  INFO 7913 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 2 JPA repository interfaces.
+2023-09-01T14:53:40.424+09:00  INFO 7913 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-01T14:53:40.463+09:00  INFO 7913 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.7.Final
+2023-09-01T14:53:40.465+09:00  INFO 7913 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-01T14:53:40.612+09:00  INFO 7913 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-01T14:53:40.755+09:00  INFO 7913 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-01T14:53:40.764+09:00  INFO 7913 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-01T14:53:41.045+09:00  INFO 7913 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6cbbfe29
+2023-09-01T14:53:41.046+09:00  INFO 7913 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-01T14:53:41.216+09:00  INFO 7913 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-01T14:53:41.611+09:00  INFO 7913 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Hibernate: 
+    alter table article_comment 
+       drop 
+       foreign key FKghmocqkgqs5tkmucf5putw64t
+Hibernate: 
+    drop table if exists article
+Hibernate: 
+    drop table if exists article_comment
+Hibernate: 
+    create table article (
+        created_at datetime(6) not null,
+        id bigint not null auto_increment,
+        modified_at datetime(6) not null,
+        created_by varchar(100) not null,
+        modified_by varchar(100) not null,
+        content varchar(10000) not null,
+        hashtag varchar(255),
+        title varchar(255) not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create table article_comment (
+        article_id bigint not null,
+        created_at datetime(6) not null,
+        id bigint not null auto_increment,
+        modified_at datetime(6) not null,
+        created_by varchar(100) not null,
+        modified_by varchar(100) not null,
+        content varchar(500) not null,
+        primary key (id)
+    ) engine=InnoDB
+Hibernate: 
+    create index IDX571gx7oqo5xpmgocegaidlcu9 
+       on article (title)
+Hibernate: 
+    create index IDXai44fu6vaa28ebpydglnv7t3e 
+       on article (hashtag)
+Hibernate: 
+    create index IDXrmt77yibijtk4sarremr67saa 
+       on article (created_at)
+Hibernate: 
+    create index IDXjl4utii2etiocimt799wvtuvv 
+       on article (created_by)
+Hibernate: 
+    create index IDXpieqqnljv147sefofs56h25qx 
+       on article_comment (content)
+Hibernate: 
+    create index IDXh1jx107qecntcbcpc2vfb07ij 
+       on article_comment (created_at)
+Hibernate: 
+    create index IDXc6pa61djuf2o8xnceyyvtdbaq 
+       on article_comment (created_by)
+Hibernate: 
+    alter table article_comment 
+       add constraint FKghmocqkgqs5tkmucf5putw64t 
+       foreign key (article_id) 
+       references article (id)
+2023-09-01T14:53:41.688+09:00  INFO 7913 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-01T14:53:42.172+09:00 DEBUG 7913 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-09-01T14:53:42.212+09:00 DEBUG 7913 --- [    Test worker] s.w.s.m.m.a.RequestMappingHandlerMapping : 2 mappings in 'requestMappingHandlerMapping'
+2023-09-01T14:53:42.223+09:00 DEBUG 7913 --- [    Test worker] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**, /api/explorer/**] in 'resourceHandlerMapping'
+2023-09-01T14:53:42.228+09:00 DEBUG 7913 --- [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-09-01T14:53:42.243+09:00 DEBUG 7913 --- [    Test worker] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 0 ResponseBodyAdvice
+2023-09-01T14:53:42.513+09:00  INFO 7913 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-09-01T14:53:42.513+09:00  INFO 7913 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-09-01T14:53:42.516+09:00  INFO 7913 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 13 endpoint(s) beneath base path '/actuator'
+2023-09-01T14:53:42.525+09:00  INFO 7913 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 11 ms
+2023-09-01T14:53:42.561+09:00  INFO 7913 --- [    Test worker] c.e.p.controller.DataRestTest            : Started DataRestTest in 2.982 seconds (process running for 3.461)
+Hibernate: 
+    select
+        a1_0.id,
+        a1_0.article_id,
+        a2_0.id,
+        a2_0.content,
+        a2_0.created_at,
+        a2_0.created_by,
+        a2_0.hashtag,
+        a2_0.modified_at,
+        a2_0.modified_by,
+        a2_0.title,
+        a1_0.content,
+        a1_0.created_at,
+        a1_0.created_by,
+        a1_0.modified_at,
+        a1_0.modified_by 
+    from
+        article_comment a1_0 
+    join
+        article a2_0 
+            on a2_0.id=a1_0.article_id 
+    where
+        a1_0.id=?
+2023-09-01T14:53:43.154+09:00 DEBUG 7913 --- [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/hal+json', given [*/*] and supported [application/hal+json]
+2023-09-01T14:53:43.157+09:00 DEBUG 7913 --- [    Test worker] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [EntityModel { content: ArticleComment(id=1, article=Article(id=49, title=Morbi a ipsum., content=In  (truncated)...]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

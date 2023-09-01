@@ -12,17 +12,16 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 public interface ArticleRepository extends
         JpaRepository<Article, Long>,
         QuerydslPredicateExecutor<Article>,//Article 필드의 기본 검색 기능 추가
-        QuerydslBinderCustomizer<QArticle>
-{
+        QuerydslBinderCustomizer<QArticle> {
     @Override
-    default void customize(QuerydslBindings bindings, QArticle root){
+    default void customize(QuerydslBindings bindings, QArticle root) {
         bindings.excludeUnlistedProperties(true);//검색에서 제외할 수 있도록 설정
         //검색을 원하는 필드를 추가한다.
         bindings.including(root.title
-            , root.content
-            , root.hashtag
-            , root.createdAt
-            , root.createdBy
+                , root.content
+                , root.hashtag
+                , root.createdAt
+                , root.createdBy
         );
         //검색시 하나만 넘겨준다.
         //bindings.bind(root.title).first((path, value) -> path.eq(value));
