@@ -19,9 +19,8 @@ import java.util.Objects;
         @Index(columnList = "createdBy")
 })
 @Entity
-/* @NoArgsConstructor(access = AccessLevel.PROTECTED)//기본 생성자 생성 //생성자 권한은 protected 이다.
-application.yaml에서 test.database.replace: none 추가한 내용과 위 내용이 동일하다.
-*/
+@NoArgsConstructor(access = AccessLevel.PROTECTED)//기본 생성자 생성 //생성자 권한은 protected 이다.
+//application.yaml에서 test.database.replace: none 추가한 내용과 위 내용이 동일하다.
 public class ArticleComment extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,11 +51,9 @@ public class ArticleComment extends AuditingFields{
         this.article = article;
         this.content = content;
     }
-
     public static ArticleComment of(Article article, String content) {
         return new ArticleComment(article, content);
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
