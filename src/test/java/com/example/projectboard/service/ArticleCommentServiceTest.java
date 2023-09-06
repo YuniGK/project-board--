@@ -56,9 +56,7 @@ class ArticleCommentServiceTest {
     @Test
     void givenArticleCommentInfo_whenSavingArticleComment_thenSavesArticleComment(){
         //Given
-        ArticleCommentDto dto = ArticleCommentDto.of(
-                LocalDateTime.now(), "yuni", LocalDateTime.now(), "yuni", "comment"
-        );
+        ArticleCommentDto dto = ArticleCommentDto.of(LocalDateTime.now(), "yuni", LocalDateTime.now(), "yuni", "comment");
 
         given(articleCommentRepository.save(any(ArticleComment.class))).willReturn(null);
 
