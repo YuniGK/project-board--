@@ -2,6 +2,7 @@ package com.example.projectboard.repository;
 
 import com.example.projectboard.config.JpaConfig;
 import com.example.projectboard.domain.Article;
+import com.example.projectboard.domain.UserAccount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,13 @@ class JpaRepositoryTest {
     private final ArticleRepository articleRepository;
     private final ArticleCommentRepository articleCommentRepository;
 
+    private final UserAccountRepository userAccountRepository;
+
     public JpaRepositoryTest(@Autowired ArticleRepository articleRepository
-            , @Autowired ArticleCommentRepository articleCommentRepository) {
+            , @Autowired ArticleCommentRepository articleCommentRepository
+            , @Autowired UserAccountRepository userAccountRepository) {
         this.articleRepository = articleRepository;
+        this.userAccountRepository = userAccountRepository;
         this.articleCommentRepository = articleCommentRepository;
     }
 
@@ -31,14 +36,16 @@ class JpaRepositoryTest {
     @Test
     void givenTestData_whenSelecting_thenWorksFine(){
         //Given
+        long previousCount = articleRepository.count();
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("yuni", "pw", null, null, null));
+
+        Article article = Article.of(userAccount, "new article", "new count", "spring");
 
         //When
-        List<Article> articles =  articleRepository.findAll();
+        articleRepository.save(article);
 
         //Then
-        assertThat(articles)
-                .isNotNull()
-                .hasSize(123);
+        assertThat(articleRepository.count()).isEqualTo(previousCount+1);
     }
 
     @DisplayName("insert test")
@@ -46,10 +53,11 @@ class JpaRepositoryTest {
     void givenTestData_whenInserting_thenWorksFine(){
         //Given
         long previousCount = articleRepository.count();//기존 리스트의 갯수를 확인
+        UserAccount userAccount = userAccountRepository.save(UserAccount.of("yuni", "pw", null, null, null));
 
         //When
         Article savedArticle = articleRepository.save(
-                Article.of("new article", "new content", "#spring")
+                Article.of(userAccount, "new article", "new content", "#spring")
         );
 
         //Then
