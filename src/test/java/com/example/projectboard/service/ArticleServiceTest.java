@@ -1,8 +1,10 @@
 package com.example.projectboard.service;
 
 import com.example.projectboard.domain.Article;
+import com.example.projectboard.domain.UserAccount;
 import com.example.projectboard.domain.type.SearchType;
 import com.example.projectboard.dto.ArticleDto;
+import com.example.projectboard.dto.ArticleWithCommentsDto;
 import com.example.projectboard.dto.UserAccountDto;
 import com.example.projectboard.repository.ArticleCommentRepository;
 import com.example.projectboard.repository.ArticleRepository;
@@ -56,14 +58,14 @@ class ArticleServiceTest {
         SearchType searchType = SearchType.TITLE;
         String searchKeyword = "title";
         Pageable pageable = Pageable.ofSize(20);
-        given(articleRepository.findByTitle(searchKeyword, pageable)).willReturn(Page.empty());
+        given(articleRepository.findByTitleContaining(searchKeyword, pageable)).willReturn(Page.empty());
 
         // When
         Page<ArticleDto> articles = sut.searchArticles(searchType, searchKeyword, pageable);
 
         // Then
         assertThat(articles).isEmpty();
-        then(articleRepository).should().findByTitle(searchKeyword, pageable);
+        then(articleRepository).should().findByTitleContaining(searchKeyword, pageable);
     }
 
     @DisplayName("게시글을 조회하면, 게시글을 반환한다.")
@@ -75,10 +77,10 @@ class ArticleServiceTest {
         given(articleRepository.findById(articleId)).willReturn(Optional.of(article));
 
         //When
-        ArticleDto articles = sut.searchArticle(articleId);
+        ArticleWithCommentsDto articles = sut.getArticle(articleId);
 
         //Then
-        assertThat(dto)
+        assertThat(articles)
                 .hasFieldOrPropertyWithValue("title", article.getTitle())
                 .hasFieldOrPropertyWithValue("content", article.getContent())
                 .hasFieldOrPropertyWithValue("hashtag", article.getHashtag());
@@ -123,6 +125,10 @@ class ArticleServiceTest {
         Article article = createArticle();
         ArticleDto dto = createArticleDto("새 타이틀", "새 내용", "#springboot");
         given(articleRepository.getReferenceById(dto.id())).willReturn(article);
+        /* getReferenceById - 가져온다, 가져오려는 대상이 없을 시, 내부에서 예외 발생. (EntityNotFoundException)
+        * 메서드로 반환된 객체 내부의 정보를 요청하는 시점에 그제서야 DB를 조회한다.
+        * 즉, 내부의 값을 필요로 하지는 않고, 다른 객체에게 할당하는 목적으로만 조회한다.(성능상 이점)
+        * -> 참조값만 가져온다. */
 
         // When
         sut.updateArticle(dto);
@@ -160,7 +166,7 @@ class ArticleServiceTest {
         sut.deleteArticle(1L);
 
         //Then
-        then(articleRepository).should().delete(any(Article.class));//delete를 호출했는지 확인한다.
+        then(articleRepository).should().deleteById(articleId);//delete를 호출했는지 확인한다.
     }
 
     private UserAccount createUserAccount() {
