@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Configuration//설정파일을 만들기 위한 애노테이션 or Bean을 등록하기 위한 애노테이션
 @EnableJpaAuditing//자동으로 값을 등록할 수 있게 도와주는 내용에 대한 어노테이
-public class JpaConfig {
+public class  JpaConfig {
     /* JPA 설정 모음 */
 
     /* AuditorAware 작성자를 저장 시키기 위한 설정

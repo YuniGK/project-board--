@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Getter
-@ToString
+@ToString(callSuper = true)/* 부모의 toString을 출력 */
 @Table(indexes = {
         @Index(columnList = "title"),
         @Index(columnList = "hashtag"),
@@ -36,6 +36,10 @@ public class Article extends AuditingFields{
         기본 설정 값으로 각 데이터베이스에 따라 기본키를 자동으로 생성
     */
     private Long id;
+
+    @Setter
+    @ManyToOne(optional = false)
+    private UserAccount userAccount;//유저 정보
 
     @Setter//수정이 필요한 부분만 setter 어너테이션을 붙인다. / id 등에 사용자나 개발자가 수정할 수 있는 것을 막기 위해 각각 설정했다.
     @Column(nullable = false)
@@ -70,7 +74,7 @@ public class Article extends AuditingFields{
     * CascadeType.REFRESH: 상위 엔티티를 새로고침(Refresh)할 때, 연관된 엔티티도 모두 새로고침
     */
     @ToString.Exclude//룸복에서 ToString할때 해당 필드를 제외한다.
-    @OrderBy("id")
+    @OrderBy("createdAt DESC")
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
@@ -95,14 +99,15 @@ public class Article extends AuditingFields{
     protected Article(){}
 
     //자동으로 생성되는 컬럼은 제외
-    private Article(String title, String content, String hashtag) {
+    private Article(UserAccount userAccount, String title, String content, String hashtag) {
+        this.userAccount = userAccount;
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
     }
 
-    public static Article of(String title, String content, String hashtag) {
-        return new Article(title, content, hashtag);
+    public static Article of(UserAccount userAccount, String title, String content, String hashtag) {
+        return new Article(userAccount, title, content, hashtag);
     }
 
     /* 동일한 게시글인지 확인하기 위한 설정 ctrl+n -> equals() and hashcode() 를 통해서 생성한다.
