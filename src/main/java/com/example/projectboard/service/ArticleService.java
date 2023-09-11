@@ -54,7 +54,7 @@ public class ArticleService {
     public void updateArticle(ArticleDto dto) {
         try {
             Article article = articleRepository.getReferenceById(dto.id());
-            if (dto.title() != null) { article.setTitle(dto.title()); }
+            if (dto.title() != null) { article.setTitle(dto.title()); }//업데이트가 실행됨
             if (dto.content() != null) { article.setContent(dto.content()); }
             article.setHashtag(dto.hashtag());
         } catch (EntityNotFoundException e) {
