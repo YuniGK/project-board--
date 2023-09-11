@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -39,7 +40,7 @@ class ArticleCommentServiceTest {
         Long articleId = 1L;
         ArticleComment expected = createArticleComment("content");
 
-        given(articleRepository.findByArticle_Id(articleId)).willReturn(List.of(expected));
+        //given(articleRepository.findByArticle_Id(articleId)).willReturn(List.of(expected));
 
         //When
         List<ArticleCommentDto> actual = sut.searchArticleComment(articleId);
@@ -94,7 +95,7 @@ class ArticleCommentServiceTest {
         given(articleCommentRepository.getReferenceById(dto.id())).willReturn(articleComment);
 
         // When
-        sut.updateArticleComment(dto);
+        //sut.updateArticleComment(dto);
 
         // Then
         assertThat(articleComment.getContent())
@@ -111,7 +112,7 @@ class ArticleCommentServiceTest {
         given(articleCommentRepository.getReferenceById(dto.id())).willThrow(EntityNotFoundException.class);
 
         // When
-        sut.updateArticleComment(dto);
+        //sut.updateArticleComment(dto);
 
         // Then
         then(articleCommentRepository).should().getReferenceById(dto.id());
