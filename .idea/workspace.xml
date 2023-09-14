@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="f299ebe1-db8a-4b0f-87f3-ad0434a8ae02" name="Changes" comment="">
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2.1/checksums/checksums.lock" afterDir="false" />
@@ -48,11 +49,15 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
 >>>>>>> main
     </list>
+=======
+    <list default="true" id="5ae65142-07ff-4b5a-8d1d-ebf0f25f24a9" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -79,6 +84,12 @@
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+=======
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -89,9 +100,15 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
+<<<<<<< Updated upstream
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2UeO1SOdrlKN2Uj3ztNJCyYfdYD" />
+=======
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2VEtESwZ4oHnBKL9PlXFoHiygnI" />
+>>>>>>> Stashed changes
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -99,6 +116,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RequestMappingsPanelOrder0": "0",
@@ -133,6 +151,33 @@
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.example.projectboard.repository" />
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/yunkim/Downloads/study/project-board--/project-board--/src/main/resources/templates/articles&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;43f6cce349985d2081ed4012514f0f88&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/articles" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
+>>>>>>> Stashed changes
     </key>
   </component>
   <component name="RunDashboard">
@@ -142,6 +187,7 @@
       </set>
     </option>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Gradle.DataRestTest.givenNothing_whenRequestingArticleComment_thenReturnsArticleCommentJsonResponse">
     <configuration name="DataRestTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -216,6 +262,10 @@
       <method v="2" />
     </configuration>
     <configuration name="JpaRepositoryTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+=======
+  <component name="RunManager" selected="Gradle.ArticleControllerTest">
+    <configuration name="ArticleControllerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+>>>>>>> Stashed changes
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -228,7 +278,11 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
+<<<<<<< Updated upstream
             <option value="&quot;com.example.projectboard.repository.JpaRepositoryTest&quot;" />
+=======
+            <option value="&quot;com.example.projectboard.controller.ArticleControllerTest&quot;" />
+>>>>>>> Stashed changes
           </list>
         </option>
         <option name="vmOptions" />
@@ -239,7 +293,11 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="JpaRepositoryTest.givenTestData_whenSelecting_thenWorksFine" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+=======
+    <configuration name="ArticleControllerTest.givenNothing_whenRequestingArticlesHashtagSearchView_thenReturnsArticleHashtagSearchView" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+>>>>>>> Stashed changes
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -252,7 +310,11 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
+<<<<<<< Updated upstream
             <option value="&quot;com.example.projectboard.repository.JpaRepositoryTest.givenTestData_whenSelecting_thenWorksFine&quot;" />
+=======
+            <option value="&quot;com.example.projectboard.controller.ArticleControllerTest.givenNothing_whenRequestingArticlesHashtagSearchView_thenReturnsArticleHashtagSearchView&quot;" />
+>>>>>>> Stashed changes
           </list>
         </option>
         <option name="vmOptions" />
@@ -263,27 +325,47 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
+<<<<<<< Updated upstream
     <configuration name="ProjectBoardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="project-board--.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.projectboard.ProjectBoardApplication" />
+=======
+    <configuration name="ProjectBoardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="project-board--.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.projectboard.ProjectBoardApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.projectboard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+>>>>>>> Stashed changes
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< Updated upstream
         <item itemvalue="Gradle.DataRestTest.givenNothing_whenRequestingArticleComment_thenReturnsArticleCommentJsonResponse" />
         <item itemvalue="Gradle.DataRestTest" />
         <item itemvalue="Gradle.DataRestTest.test" />
         <item itemvalue="Gradle.JpaRepositoryTest.givenTestData_whenSelecting_thenWorksFine" />
         <item itemvalue="Gradle.JpaRepositoryTest" />
+=======
+        <item itemvalue="Spring Boot.ProjectBoardApplication" />
+        <item itemvalue="Gradle.ArticleControllerTest" />
+        <item itemvalue="Gradle.ArticleControllerTest.givenNothing_whenRequestingArticlesHashtagSearchView_thenReturnsArticleHashtagSearchView" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< Updated upstream
       <changelist id="f299ebe1-db8a-4b0f-87f3-ad0434a8ae02" name="Changes" comment="" />
       <created>1693296363295</created>
       <option name="number" value="Default" />
@@ -299,6 +381,17 @@
       <workItem from="1693480720790" duration="721000" />
       <workItem from="1693543702776" duration="3887000" />
 >>>>>>> main
+=======
+      <changelist id="5ae65142-07ff-4b5a-8d1d-ebf0f25f24a9" name="Changes" comment="" />
+      <created>1694412956078</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694412956078</updated>
+      <workItem from="1694412957228" duration="4048000" />
+      <workItem from="1694424238698" duration="51000" />
+      <workItem from="1694424291639" duration="15000" />
+      <workItem from="1694424308713" duration="169000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
