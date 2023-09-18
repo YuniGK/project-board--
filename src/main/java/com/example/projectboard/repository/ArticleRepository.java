@@ -2,6 +2,7 @@ package com.example.projectboard.repository;
 
 import com.example.projectboard.domain.Article;
 import com.example.projectboard.domain.QArticle;
+import com.example.projectboard.repository.querydsl.ArticleRepositoryCustom;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,8 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 public interface ArticleRepository extends
         JpaRepository<Article, Long>,
         QuerydslPredicateExecutor<Article>,//Article 필드의 기본 검색 기능 추가
-        QuerydslBinderCustomizer<QArticle> {
+        QuerydslBinderCustomizer<QArticle>
+        , ArticleRepositoryCustom {
 
     //Containing - like %:title%
     Page<Article> findByTitleContaining(String title, Pageable pageable);
@@ -41,4 +43,5 @@ public interface ArticleRepository extends
         bindings.bind(root.createdAt).first(DateTimeExpression::eq);//동일한 날짜를 찾는다.
         bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);//대소문자 구분하지 않는다.
     }
+
 }
